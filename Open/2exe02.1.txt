@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class ParImparContador {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Vetor para armazenar os valores fornecidos pelo usuário
+        int[] valores = new int[10];
+        
+        // Ler os valores do usuário
+        System.out.println("Digite 10 valores inteiros:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Valor " + (i + 1) + ": ");
+            valores[i] = scanner.nextInt();
+        }
+        
+        // Inicializar contadores de números pares e ímpares
+        int pares = 0;
+        int impares = 0;
+        
+        // Contar números pares e ímpares
+        for (int i = 0; i < 10; i++) {
+            if (valores[i] % 2 == 0) {
+                pares++;
+            } else {
+                impares++;
+            }
+        }
+        
+        // Imprimir a quantidade de números pares e ímpares
+        System.out.println("Quantidade de números pares: " + pares);
+        System.out.println("Quantidade de números ímpares: " + impares);
+        
+        scanner.close();
+    }
+}

@@ -1,0 +1,16 @@
+public class NewClassTeste79 { 
+    public static void main(String[] args) { 
+        int x[]= new int[5];
+        int i;
+        int par=0;
+        Scanner in = new Scanner (System.in);
+        for(i=0; i<x.length;i++){
+            x[i] = in.nextInt(); 
+            if(x[i]%2==0){
+               par=par+1; 
+            }
+            
+        }
+        System.out.println("No total temos " + par + " números pares." );
+    }    
+}

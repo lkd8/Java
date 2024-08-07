@@ -1,0 +1,48 @@
+import java.util.Scanner;import java.util.Scanner;
+
+public class MyClass {
+
+  public static void main(String args[]) {
+
+       Scanner in = new Scanner(System.in);
+
+       int menor_index = -1, maior_index = -1;
+
+       float[] numeros = new float[10];
+
+       float maior = Float.MIN_VALUE;
+
+       float menor  = Float.MAX_VALUE;
+
+       for(int i = 0; i < numeros.length; i++){
+
+          System.out.println("Digite a nota: ");
+
+          numeros[i] = in.nextFloat();
+
+          if(numeros[i] <= menor){
+
+              menor = numeros[i];
+
+              menor_index = i;
+
+          }
+
+          else if(numeros[i] >= maior){
+
+              maior = numeros[i];
+
+              maior_index = i;
+
+          }
+
+       }
+
+       System.out.printf("O maior numéro foi o %.2f na posição %d. O menor numero foi o %.2f na posição %d.", maior, maior_index, menor, menor_index);
+
+  }
+
+}
+
+
+

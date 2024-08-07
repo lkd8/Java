@@ -1,0 +1,40 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class GrauDoArray {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Ler o tamanho do array
+        System.out.print("Digite o tamanho do array: ");
+        int n = scanner.nextInt();
+
+        // Ler os elementos do array
+        int[] array = new int[n];
+        System.out.println("Digite os elementos do array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        // Calcular a frequência de cada número no array
+        Map<Integer, Integer> frequencia = new HashMap<>();
+        for (int num : array) {
+            frequencia.put(num, frequencia.getOrDefault(num, 0) + 1);
+        }
+
+        // Determinar a frequência máxima (grau do array)
+        int grau = 0;
+        for (int freq : frequencia.values()) {
+            if (freq > grau) {
+                grau = freq;
+            }
+        }
+
+        // Imprimir o grau do array
+        System.out.println("O grau do array é: " + grau);
+
+        scanner.close();
+    }
+}

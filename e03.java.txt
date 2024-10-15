@@ -1,0 +1,46 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class JogoDaForca {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String[] palavras = {"java", "programacao", "computador", "internet"};
+        Random rand = new Random();
+        
+        String palavraEscolhida = palavras[rand.nextInt(palavras.length)];
+        char[] palavraMascarada = new char[palavraEscolhida.length()];
+        for (int i = 0; i < palavraMascarada.length; i++) {
+            palavraMascarada[i] = '_';
+        }
+        
+        int erros = 0;
+        final int MAX_ERROS = 6;
+        
+        while (erros < MAX_ERROS && new String(palavraMascarada).contains("_")) {
+            System.out.print("Digite uma letra: ");
+            char letra = in.next().charAt(0);
+            boolean acertou = false;
+            
+            for (int i = 0; i < palavraEscolhida.length(); i++) {
+                if (palavraEscolhida.charAt(i) == letra) {
+                    palavraMascarada[i] = letra;
+                    acertou = true;
+                }
+            }
+            
+            if (!acertou) {
+                erros++;
+                System.out.println("-> Você errou pela " + erros + "ª vez. Tente de novo!");
+            } else {
+                System.out.println("A palavra é: " + String.valueOf(palavraMascarada));
+            }
+        }
+        
+        if (erros == MAX_ERROS) {
+            System.out.println("Você foi enforcado! A palavra era: " + palavraEscolhida);
+        } else {
+            System.out.println("Parabéns! Você adivinhou a palavra: " + palavraEscolhida);
+        }
+        in.close();
+    }
+}

@@ -1,0 +1,61 @@
+### Exercício 1: Sequência de Collatz ###
+import java.util.Scanner;
+
+public class CollatzSequence {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite um número: ");
+        int n = scanner.nextInt();
+        scanner.close();
+
+        while (n != 1) {
+            System.out.print(n + " ");
+            if (n % 2 == 0) {
+                n /= 2;
+            } else {
+                n = 3 * n + 1;
+            }
+        }
+        System.out.println(n); // Para imprimir o último número (1)
+    }
+}
+
+
+### Exercício 2: Número Máximo de Impressões na Sequência ###
+import java.util.Scanner;
+
+public class MaxCollatzCycle {
+    // Método para contar quantos passos até chegar em 1
+    public static int collatzCycleLength(int n) {
+        int count = 1;
+        while (n != 1) {
+            if (n % 2 == 0) {
+                n /= 2;
+            } else {
+                n = 3 * n + 1;
+            }
+            count++;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite dois números inteiros (i j): ");
+        int i = scanner.nextInt();
+        int j = scanner.nextInt();
+        scanner.close();
+
+        int maxCycleLength = 0;
+
+        // Garante que i seja sempre menor que j
+        int start = Math.min(i, j);
+        int end = Math.max(i, j);
+
+        for (int num = start; num <= end; num++) {
+            maxCycleLength = Math.max(maxCycleLength, collatzCycleLength(num));
+        }
+
+        System.out.println("Número máximo de impressões: " + maxCycleLength);
+    }
+}

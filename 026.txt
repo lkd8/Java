@@ -1,0 +1,226 @@
+
+Exercício 1 - Gerenciamento de Alunos
+====================================
+
+import java.util.Scanner;
+
+class Aluno {
+    private String nome;
+    private int matricula;
+    private double nota1, nota2;
+
+    public Aluno(String nome, int matricula, double nota1, double nota2) {
+        this.nome = nome;
+        this.matricula = matricula;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+
+    public double calcularMedia() {
+        return (nota1 + nota2) / 2;
+    }
+
+    public String verificarAprovacao() {
+        return calcularMedia() >= 7.0 ? "Aprovado" : "Reprovado";
+    }
+
+    public void exibirDados() {
+        System.out.println("Matrícula: " + matricula);
+        System.out.println("Nome: " + nome);
+        System.out.println("Média: " + calcularMedia());
+        System.out.println("Situação: " + verificarAprovacao());
+    }
+}
+
+public class SistemaAlunos {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Matrícula: ");
+        int matricula = scanner.nextInt();
+        System.out.print("Nota 1: ");
+        double nota1 = scanner.nextDouble();
+        System.out.print("Nota 2: ");
+        double nota2 = scanner.nextDouble();
+
+        Aluno aluno = new Aluno(nome, matricula, nota1, nota2);
+        aluno.exibirDados();
+        scanner.close();
+    }
+}
+
+Exercício 2 - Monitor de Frequência Cardíaca
+============================================
+
+import java.util.Scanner;
+
+class Paciente {
+    private String nome;
+    private int idade;
+
+    public Paciente(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    public int calcularFrequenciaMaxima() {
+        return 220 - idade;
+    }
+
+    public double calcularFrequenciaMinimaAlvo() {
+        return calcularFrequenciaMaxima() * 0.50;
+    }
+
+    public double calcularFrequenciaMaximaAlvo() {
+        return calcularFrequenciaMaxima() * 0.85;
+    }
+
+    public void exibirDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("Frequência Máxima: " + calcularFrequenciaMaxima());
+        System.out.println("Frequência Alvo: " + calcularFrequenciaMinimaAlvo() + " - " + calcularFrequenciaMaximaAlvo());
+    }
+}
+
+public class SistemaPaciente {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Idade: ");
+        int idade = scanner.nextInt();
+
+        Paciente paciente = new Paciente(nome, idade);
+        paciente.exibirDados();
+        scanner.close();
+    }
+}
+
+Exercício 3 - Sistema Bancário
+==============================
+
+import java.util.Scanner;
+
+class ContaBancaria {
+    private String titular;
+    private int numeroConta;
+    private double saldo;
+
+    public ContaBancaria(String titular, int numeroConta, double saldoInicial) {
+        this.titular = titular;
+        this.numeroConta = numeroConta;
+        this.saldo = saldoInicial;
+    }
+
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+
+    public boolean sacar(double valor) {
+        if (saldo >= valor) {
+            saldo -= valor;
+            return true;
+        } else {
+            System.out.println("Saldo insuficiente.");
+            return false;
+        }
+    }
+
+    public void exibirSaldo() {
+        System.out.println("Titular: " + titular);
+        System.out.println("Número da Conta: " + numeroConta);
+        System.out.println("Saldo: R$ " + saldo);
+    }
+}
+
+public class SistemaBancario {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nome do Titular: ");
+        String titular = scanner.nextLine();
+        System.out.print("Número da Conta: ");
+        int numeroConta = scanner.nextInt();
+        System.out.print("Saldo Inicial: ");
+        double saldoInicial = scanner.nextDouble();
+
+        ContaBancaria conta = new ContaBancaria(titular, numeroConta, saldoInicial);
+
+        System.out.print("Valor para depósito: ");
+        double deposito = scanner.nextDouble();
+        conta.depositar(deposito);
+
+        System.out.print("Valor para saque: ");
+        double saque = scanner.nextDouble();
+        conta.sacar(saque);
+
+        conta.exibirSaldo();
+        scanner.close();
+    }
+}
+
+Exercício 4 - Cálculo de Salário de Professores
+==============================================
+
+import java.util.Scanner;
+
+class Professor {
+    private String nome;
+    private int aulasSemana;
+    private double valorHoraAula;
+
+    public Professor(String nome, int aulasSemana, double valorHoraAula) {
+        this.nome = nome;
+        this.aulasSemana = aulasSemana;
+        this.valorHoraAula = valorHoraAula;
+    }
+
+    public double calcularSalarioBase() {
+        return aulasSemana * 4.5 * valorHoraAula;
+    }
+
+    public double calcularAdicionalHoraAtividade() {
+        return calcularSalarioBase() * 0.05;
+    }
+
+    public double calcularDSR() {
+        return (calcularSalarioBase() + calcularAdicionalHoraAtividade()) / 6;
+    }
+
+    public double calcularSalarioBruto() {
+        return calcularSalarioBase() + calcularAdicionalHoraAtividade() + calcularDSR();
+    }
+
+    public void exibirSalario() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Salário Bruto: R$ " + calcularSalarioBruto());
+    }
+}
+
+public class SistemaProfessor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Professor[] professores = new Professor[3];
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println("\nCadastro do Professor " + (i + 1));
+            System.out.print("Nome: ");
+            String nome = scanner.nextLine();
+            System.out.print("Aulas por semana: ");
+            int aulasSemana = scanner.nextInt();
+            System.out.print("Valor da hora-aula: ");
+            double valorHoraAula = scanner.nextDouble();
+            scanner.nextLine();
+
+            professores[i] = new Professor(nome, aulasSemana, valorHoraAula);
+        }
+
+        System.out.println("\n--- Salários ---");
+        for (Professor prof : professores) {
+            prof.exibirSalario();
+        }
+
+        scanner.close();
+    }
+}
